@@ -60,7 +60,7 @@ body {
 
 .screen {
     background-color: white;
-    height: 5px;
+    height: 50px;
     width: 100%;
     margin: 15px 0;
     transform: rotateX(-45deg);
@@ -108,6 +108,7 @@ body {
 
 p.text {
     margin: 5px 0;
+    font-size: 18px;
 }
 
 p.text span {
