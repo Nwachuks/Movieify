@@ -15,13 +15,14 @@ container.addEventListener('click', (e) => {
         e.target.classList.toggle('selected');
     }
     updateSelectedCount();
-})
+});
 
 // Movie selected event
 movieSelected.addEventListener('change', (e) => {
-    ticketPrice = e.target.value;
+    ticketPrice = +e.target.value;
+    setMovieData(e.target.selectedIndex, e.target.value);
     updateSelectedCount();
-})
+});
 
 // Update total and count
 function updateSelectedCount() {
@@ -31,11 +32,17 @@ function updateSelectedCount() {
     const selectedSeatsNumbers = [...selectedSeats].map((seat) => {
         return [...allSeats].indexOf(seat) + 1;
     });
-    
+    localStorage.setItem('selectedSeatsNumbers', JSON.stringify(selectedSeatsNumbers));
     console.log(selectedSeatsNumbers);
     const selectedSeatsCount = selectedSeats.length;
 
     count.innerText = selectedSeatsCount;
     ticketNumber.innerText = selectedSeatsNumbers.join(", ");
     total.innerText = selectedSeatsCount * ticketPrice;
+}
+
+// Save selected movie index and price
+function setMovieData(movieIndex, moviePrice) {
+    localStorage.setItem('selectedMovieIndex', movieIndex);
+    localStorage.setItem('selectedMoviePrice', moviePrice);
 }
